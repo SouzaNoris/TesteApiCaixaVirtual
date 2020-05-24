@@ -7,6 +7,7 @@ module.exports = () => {
     const app = express();
 
     app.set('port', process.env.PORT || config.get('server.port'));
+    app.set('databaseName', config.get('database.name'));
 
     app.use(bodyParser.json());
 
