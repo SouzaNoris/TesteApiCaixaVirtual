@@ -31,7 +31,7 @@ export class CategoriaRepository extends BaseRepository implements BaseRepositor
             this.getConnectionDatabase().then((db) => {
                 db.db(this.databaseName)
                     .collection(this.nameCollection)
-                    .updateOne({ id: "0005" } , { $set: dados })
+                    .updateOne({ id: dados.id } , { $set: dados })
                     .then(() => {
                         return resolve("dados atualizados com sucesso!");
                     })
