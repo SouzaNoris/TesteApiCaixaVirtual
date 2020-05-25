@@ -11,43 +11,66 @@ export class CategoriaRepository extends BaseRepository implements BaseRepositor
     }
 
     insert(dados: Categoria) {
-        this.collection.insertOne(dados)
-            .then(() => {
-                this.closeConnectionDatabase();
-            })
-            .catch(err => {
-                this.messageError(err);
+        return new Promise((resolve, reject) => {
+            this.getConnectionDatabase().then((db) => {
+                db.db(this.databaseName)
+                    .collection(this.nameCollection)
+                    .insertOne(dados)
+                    .then(() => {
+                        return resolve("Dados inseridos com sucesso!");
+                    })
+                    .catch(err => {
+                        return reject(this.messageError(err));
+                    });
             });
+        });
     }
 
-    update(dados: Categoria): void {
-        const query = { id: dados.id };
-
-        this.collection.updateOne(query, dados)
-            .then(() => this.closeConnectionDatabase())
-            .catch(err => {
-                this.messageError(err);
+    update(dados: Categoria) {
+        return new Promise((resolve, reject) => {
+            this.getConnectionDatabase().then((db) => {
+                db.db(this.databaseName)
+                    .collection(this.nameCollection)
+                    .updateOne({ id: "0005" } , { $set: dados })
+                    .then(() => {
+                        return resolve("dados atualizados com sucesso!");
+                    })
+                    .catch(err => {
+                        return reject(this.messageError(err));
+                    });
             });
+        });
     }
 
-    delete(dados: Categoria): any {
-        const query = { id: dados.id }
-        this.collection.deleteOne(query)
-            .then(() => this.closeConnectionDatabase())
-            .catch(err => this.messageError(err));
+    delete(query: any) {
+        return new Promise((resolve, reject) => {
+            this.getConnectionDatabase().then((db) => {
+                db.db(this.databaseName)
+                    .collection(this.nameCollection)
+                    .deleteOne(query)
+                    .then((resposta) => {
+                        return resolve(resposta);
+                    })
+                    .catch(err => {
+                        return reject(this.messageError(err));
+                    });
+            });
+        });
     }
 
-    search(query: {}): Categoria[] {
-        let dadosRetorno: Categoria[];
-
-        this.collection.find<Categoria>(query)
-            .toArray()
-            .then((result) => {
-                this.closeConnectionDatabase();
-                dadosRetorno = result;
+    search(query: any) {
+        return new Promise((resolve, reject) => {
+            this.getConnectionDatabase().then((db) => {
+                db.db(this.databaseName)
+                    .collection(this.nameCollection)
+                    .find(query)
+                    .toArray()
+                    .then(resposta => {
+                        return resolve(resposta);
+                    });
+            }).catch((error) => {
+                return reject(this.messageError(error));
             })
-            .catch(err => this.messageError(err));
-
-        return dadosRetorno;
+        });
     }
 }

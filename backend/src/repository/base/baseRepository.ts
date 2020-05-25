@@ -1,50 +1,39 @@
-import { MongoClient } from "mongodb";
+import { MongoClient, Db } from "mongodb";
 import { ConfigJson } from "../../models/configJson";
 import fs from "fs";
+import { rejects } from "assert";
 
 export abstract class BaseRepository {
-    private database: MongoClient;
     protected abstract nameCollection: string;
 
     constructor() {
         this.getNameDatabase();
-        this.initializeConnectionDatabase();
     }
 
-    private databaseName: string;
+    protected databaseName: string;
 
     private url = `mongodb://localhost:27017/${this.databaseName}`;
 
     private getNameDatabase(): void {
         fs.readFile('./config/default.json', 'utf-8',
         (err, data) => {
-            const jsonData = JSON.parse(data) as ConfigJson;
+            const jsonData = JSON.parse(data);
 
-            this.databaseName = jsonData.database.name;
-
-            alert(this.databaseName);
+            this.databaseName = (jsonData as ConfigJson).database.name;
         });
     }
 
-    protected get connectionDbo() {
-        return this.database.db(this.databaseName);
+    protected async getConnectionDatabase(): Promise<MongoClient> {
+        return new Promise((resolve, reject) => {
+            MongoClient.connect(this.url).then((db) => {
+                resolve(db);
+            }).catch((error) => {
+                reject(error);
+            })
+        });
     }
 
-    protected get collection() {
-        return this.connectionDbo.collection(this.nameCollection);
-    }
-
-    protected closeConnectionDatabase() {
-        this.database.close();
-    }
-
-    protected messageError(err: string): void {
-        // console.log(`Erro ao inserir dados em ${this.nameCollection} - ${err}`);
-    }
-
-    private initializeConnectionDatabase() {
-        MongoClient.connect(this.url).then(db => {
-            this.database = db;
-        }).catch();
+    protected messageError(err: string): string {
+       return `Erro ao inserir dados em ${this.nameCollection} - ${err}`;
     }
 }
