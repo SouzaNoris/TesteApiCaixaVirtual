@@ -1,17 +1,24 @@
-<form>
+<form [formGroup]="categoriaForm">
   <div class="col-12 title-form">
     <h1>Cadastro de Categorias</h1>
   </div>
   <div class="form-group row">
     <label for="inputNomeCategoria" class="col-sm-1 col-form-label">Nome: </label>
     <div class="col-sm-9">
-      <input type="nomeCategoria" class="form-control" id="nomeCategoria" placeholder="Nome da Categoria">
+      <input type="nomeCategoria" formControlName="nome" class="form-control" id="nomeCategoria"
+        placeholder="Nome da Categoria"[disabled]="disabledInputs" autofocus>
+      <small *ngIf="categoriaForm.get('nome').errors?.required" class="text-danger d-block mt-2">
+        Password is required!
+      </small>
     </div>
   </div>
   <div class="col-12 btn-crud">
-    <button class="btn btn-success btn-lg" ng-disabled="">Salvar</button>
-    <button class="btn btn-secondary btn-lg" ng-disabled="">Alterar</button>
-    <button class="btn btn-info btn-lg" ng-disabled="">Buscar</button>
-    <button class="btn btn-danger btn-lg" ng-disabled="">Excluir</button>
+    <button class="btn btn-success btn-lg" (click)="saveCategoria()" [disabled]="!save || categoriaForm.invalid">Salvar</button>
+    <button class="btn btn-secondary btn-lg" [disabled]="!update">Alterar</button>
+    <button class="btn btn-info btn-lg" [disabled]="!search">Buscar</button>
+    <button class="btn btn-danger btn-lg" [disabled]="!delete">Excluir</button>
+  </div>
+  <div class="status-tela col-2">
+    <label>{{statusTela}}</label>
   </div>
 </form>

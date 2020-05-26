@@ -19,3 +19,8 @@ div.btn-crud button {
     margin-left: 3px;
     margin-right: 3px;
 }
+
+.status-tela  {
+    background-color: #6c757d;
+    color: white;
+}
