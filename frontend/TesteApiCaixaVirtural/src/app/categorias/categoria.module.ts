@@ -5,6 +5,7 @@ import { CommonModule } from "@angular/common";
 import { ReactiveFormsModule } from '@angular/forms';
 import { CategoriaService } from "./categoria.service";
 import { HttpClientModule } from "@angular/common/http";
+import { SearchModule } from "../search/search.module";
 
 @NgModule({
     declarations: [
@@ -14,7 +15,8 @@ import { HttpClientModule } from "@angular/common/http";
       BrowserModule,
       CommonModule,
       ReactiveFormsModule,
-      HttpClientModule 
+      HttpClientModule ,
+      SearchModule
     ],
     providers: [CategoriaService]
   })

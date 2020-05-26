@@ -5,6 +5,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CategoriaModule } from './categorias/categoria.module';
 import { Interceptor } from './auth/interceptor.module';
+import { SearchModule } from './search/search.module';
+import {AgGridModule} from "@ag-grid-community/angular";
 
 @NgModule({
   declarations: [
@@ -14,7 +16,9 @@ import { Interceptor } from './auth/interceptor.module';
     BrowserModule,
     AppRoutingModule,
     CategoriaModule,
-    Interceptor
+    Interceptor,
+    SearchModule,
+    AgGridModule.withComponents([])
   ],
   providers: [],
   bootstrap: [AppComponent]

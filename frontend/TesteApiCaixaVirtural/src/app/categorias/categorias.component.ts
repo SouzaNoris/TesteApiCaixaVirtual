@@ -25,9 +25,15 @@ export class CategoriasComponent extends BaseComponent implements OnInit {
     });
   }
 
-  public saveCategoria(): void {
+  private getInstanceCategoria(): Categoria {
     const categoria = new Categoria();
     categoria.nome = this.categoriaForm.get('nome').value;
+
+    return categoria;
+  }
+
+  public saveCategoria(): void {
+    const categoria = this.getInstanceCategoria();
 
     this.categoriaService.insert(categoria).subscribe((response) => {
       if (response) {
@@ -38,5 +44,17 @@ export class CategoriasComponent extends BaseComponent implements OnInit {
     (error) => {
       console.log(error);
     });
+  }
+
+  public updateCategoria(): void {
+
+  }
+
+  public searchCategoria(): void {
+
+  }
+
+  public deleteCategoria(): void {
+
   }
 }

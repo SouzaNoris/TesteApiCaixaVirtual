@@ -15,10 +15,12 @@
   <div class="col-12 btn-crud">
     <button class="btn btn-success btn-lg" (click)="saveCategoria()" [disabled]="!save || categoriaForm.invalid">Salvar</button>
     <button class="btn btn-secondary btn-lg" [disabled]="!update">Alterar</button>
-    <button class="btn btn-info btn-lg" [disabled]="!search">Buscar</button>
+    <button class="btn btn-info btn-lg" (click)="search()" data-toggle="modal" data-target="#searchModal" [disabled]="!search">Buscar</button>
     <button class="btn btn-danger btn-lg" [disabled]="!delete">Excluir</button>
   </div>
   <div class="status-tela col-2">
     <label>{{statusTela}}</label>
   </div>
 </form>
+
+<app-search [nomeTela]="'Categorias'"></app-search>
