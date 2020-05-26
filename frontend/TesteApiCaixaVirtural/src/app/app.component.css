@@ -5,3 +5,42 @@ div.body {
     padding: 100px;
     width: 100%;
 }
+
+nav {
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+header nav {
+    background-color: #6c757d;
+}
+
+header nav a {
+    color: white;
+}
+
+div.dropdown-menu {
+    background-color: #6c757d;
+}
+a.dropdown-item {
+    color: white;
+    background-color: #6c757d;
+}
+
+footer {
+    bottom: 0;
+    float: left;
+    position: absolute;
+    width: 100%;
+    background-color: #6c757d;
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+footer div {
+    text-align: center;
+}
+
+h4 {
+    color: white;
+}

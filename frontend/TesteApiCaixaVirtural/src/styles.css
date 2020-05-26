@@ -1,1 +1,21 @@
 /* You can add global styles to this file, and also import other style files */
+form {
+    border: 1px solid #cbc8c8;
+    padding: 50px;
+}
+
+form div.title-form {
+    text-align: center;
+    padding: 10px;
+    padding-top: 0;
+}
+
+div.btn-crud {
+    padding: 10px;
+    text-align: center;
+}
+
+div.btn-crud button {
+    margin-left: 3px;
+    margin-right: 3px;
+}
