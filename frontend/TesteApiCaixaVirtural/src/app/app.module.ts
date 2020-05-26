@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CategoriaModule } from './categorias/categoria.module';
+import { Interceptor } from './auth/interceptor.module';
 
 @NgModule({
   declarations: [
@@ -12,7 +13,8 @@ import { CategoriaModule } from './categorias/categoria.module';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    CategoriaModule
+    CategoriaModule,
+    Interceptor
   ],
   providers: [],
   bootstrap: [AppComponent]

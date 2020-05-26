@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders,  HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ICrudServiceInterface } from "../contracts/crudService.interface";
 import { Categoria } from "../models/categoria";
 
@@ -14,7 +14,7 @@ export class CategoriaService implements ICrudServiceInterface<Categoria> {
     headers = new HttpHeaders().set('Content-Type', 'application/json');
   
     insert(dados: Categoria) {
-        return this.http.post<Categoria>(this.urlApi, JSON.stringify({ nome: "teste"}));
+        return this.http.post<Categoria>(this.urlApi, JSON.stringify(dados));
     }
     
     update(dados: Categoria) {
