@@ -1,6 +1,7 @@
 import * as express from "express";
 import { CategoriaController } from "../controllers/categoria.controller";
 import { LancamentoCaixaController } from "../controllers/lancamentoCaixa.controllers";
+import { UsuarioController } from "../controllers/usuario.controller";
 
 export const register = (app: express.Application) => {
     app.get('/', (err, res) => {
@@ -119,5 +120,59 @@ export const register = (app: express.Application) => {
                 res.send(404);
                 res.json(error);
             })
+    });
+
+    // Login
+    app.post("/api/v1/login");
+
+    // Cadastro Usuario
+    app.post("/api/v1/cadastroUsuario", (req: any, res) => {
+        const usuarioController = new UsuarioController();
+
+        usuarioController.insertCategoria(req.body)
+            .then((resposta) => {
+                res.json(resposta);
+            })
+            .catch((error) => {
+                res.send(404);
+                res.json(error);
+            });
+    });
+
+    app.put("/api/v1/cadastroUsuario", (req: any, res) => {
+        const usuarioController = new UsuarioController();
+
+        usuarioController.updateCategoria(req.body)
+            .then((resposta) => {
+                res.json(resposta);
+            })
+            .catch((error) => {
+                res.send(404);
+                res.json(error);
+            });
+    });
+
+    app.post("/api/v1/cadastroUsuario/search", (req, res) => {
+        const usuarioController = new UsuarioController();
+
+        usuarioController.searchCategoria(req.body).then((r) => {
+            res.json(r);
+        })
+            .catch((error) => {
+                res.send(404);
+                res.json(error);
+            })
+    });
+
+    app.delete("/api/v1/cadastroUsuario", (req, res) => {
+        const usuarioController = new UsuarioController();
+
+        usuarioController.deleteCategoria(req.query).then((r) => {
+            res.json(r);
+        })
+            .catch((error) => {
+                res.send(404);
+                res.json(error);
+            });
     });
 }

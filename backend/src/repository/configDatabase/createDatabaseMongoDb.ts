@@ -1,6 +1,6 @@
 import { MongoClient } from "mongodb";
 import fs from "fs";
-import { ConfigJson } from "../../models/configJson";
+import { ConfigJson } from "../../models/infra/configJson";
 
 export class CreateDatabaseMongoDb {
 
@@ -50,7 +50,7 @@ export class CreateDatabaseMongoDb {
     public initializeDatabase() {
         this.createDatabase();
 
-        const collection = ['login', 'categoria', 'lancamentoCaixa']
+        const collection = ['usuario', 'categoria', 'lancamentoCaixa']
 
         this.createCollection(collection);
     }

@@ -1,4 +1,4 @@
-import { BaseModelRepository } from "../models/BaseModelRepository";
+import { BaseModelRepository } from "../models/repository/base/BaseModelRepository";
 
 export interface BaseRepositoryInterface<T extends BaseModelRepository> {
     insert(dados: T): void;

@@ -1,17 +1,17 @@
-import { Categoria } from "../../models/repository/categoria";
-import { CategoriaRepository } from "../../repository/categoriaRepository";
+import { UsuarioRepository } from "../../repository/usuario.repository";
+import { Usuario } from "../../models/repository/usuario";
 
-export class CategoriaController {
-    private categoriaRepository: CategoriaRepository;
+export class UsuarioController {
+    private usuarioRepository: UsuarioRepository;
 
     constructor() {
-        this.categoriaRepository = new CategoriaRepository();
+        this.usuarioRepository = new UsuarioRepository();
     }
 
-    public async insertCategoria(dados: Categoria) {
+    public async insertCategoria(dados: Usuario) {
         let result;
 
-        await this.categoriaRepository.insert(dados)
+        await this.usuarioRepository.insert(dados)
             .then((resposta) => {
                 result = resposta;
             });
@@ -19,10 +19,10 @@ export class CategoriaController {
         return result;
     }
 
-    public async updateCategoria(dados: Categoria) {
+    public async updateCategoria(dados: Usuario) {
         let result;
 
-        await this.categoriaRepository.update(dados)
+        await this.usuarioRepository.update(dados)
             .then((resposta) => {
                 result = resposta;
             });
@@ -33,7 +33,7 @@ export class CategoriaController {
     public async searchCategoria(query: {}) {
         let dados;
 
-        await this.categoriaRepository.search(query)
+        await this.usuarioRepository.search(query)
             .then((response) => {
                 dados = response;
             });
@@ -44,7 +44,7 @@ export class CategoriaController {
     public async deleteCategoria(id: any) {
         let result;
 
-        await this.categoriaRepository.delete(id)
+        await this.usuarioRepository.delete(id)
             .then((response) => {
                 result = response;
             });

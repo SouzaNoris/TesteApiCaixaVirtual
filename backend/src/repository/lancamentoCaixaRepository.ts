@@ -1,6 +1,6 @@
 import { BaseRepository } from "./base/baseRepository";
 import { BaseRepositoryInterface } from "../../src/contracts/baseRepositoryInterface";
-import { LancamentoCaixa } from "../../src/models/lancamentoCaixa";
+import { LancamentoCaixa } from "../models/repository/lancamentoCaixa";
 
 export class LancamentoCaixaRepository extends BaseRepository implements BaseRepositoryInterface<LancamentoCaixa> {
 

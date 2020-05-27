@@ -1,6 +1,6 @@
 import { LancamentoCaixaRepository } from "../../repository/lancamentoCaixaRepository";
-import { LancamentoCaixa } from "../../models/lancamentoCaixa";
-import { ResumoCarteira } from "../../models/resumoCarteira";
+import { LancamentoCaixa } from "../../models/repository/lancamentoCaixa";
+import { ResumoCarteira } from "../../models/repository/resumoCarteira";
 
 export class LancamentoCaixaController {
     private lancamentoCaixaRepository: LancamentoCaixaRepository;

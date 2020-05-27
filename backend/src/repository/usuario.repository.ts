@@ -1,16 +1,16 @@
-import { Categoria } from "../models/repository/categoria";
 import { BaseRepositoryInterface } from "../contracts/baseRepositoryInterface";
 import { BaseRepository } from "./base/baseRepository";
+import { Usuario } from "../models/repository/usuario";
 
-export class CategoriaRepository extends BaseRepository implements BaseRepositoryInterface<Categoria> {
+export class UsuarioRepository extends BaseRepository implements BaseRepositoryInterface<Usuario> {
 
-    protected nameCollection = 'categoria';
+    protected nameCollection = 'usuario';
 
     constructor() {
         super();
     }
 
-    insert(dados: Categoria) {
+    insert(dados: Usuario) {
         return new Promise((resolve, reject) => {
             this.getConnectionDatabase().then((db) => {
                 db.db(this.databaseName)
@@ -26,7 +26,7 @@ export class CategoriaRepository extends BaseRepository implements BaseRepositor
         });
     }
 
-    update(dados: Categoria) {
+    update(dados: Usuario) {
         return new Promise((resolve, reject) => {
             this.getConnectionDatabase().then((db) => {
                 db.db(this.databaseName)

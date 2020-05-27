@@ -1,4 +1,4 @@
-import { BaseModelRepository } from "./BaseModelRepository";
+import { BaseModelRepository } from "./base/BaseModelRepository";
 import { Categoria } from "./categoria";
 
 export class LancamentoCaixa extends BaseModelRepository {
@@ -7,4 +7,5 @@ export class LancamentoCaixa extends BaseModelRepository {
     public tipo: string;
     public valor: number;
     public descricao: string;
+    public idLoja: string;
 }

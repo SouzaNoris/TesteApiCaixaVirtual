@@ -1,5 +1,5 @@
 import { MongoClient } from "mongodb";
-import { ConfigJson } from "../../models/configJson";
+import { ConfigJson } from "../../models/infra/configJson";
 import fs from "fs";
 
 export abstract class BaseRepository {
