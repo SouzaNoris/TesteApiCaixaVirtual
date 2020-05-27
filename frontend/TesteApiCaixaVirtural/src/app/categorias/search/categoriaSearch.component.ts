@@ -38,7 +38,6 @@ export class CategoriaSearchComponent {
         }
 
         this.categoriaService.search(query).subscribe((categorias) => {
-            debugger;
             this.categoria = categorias;
         },
             (errors) => {

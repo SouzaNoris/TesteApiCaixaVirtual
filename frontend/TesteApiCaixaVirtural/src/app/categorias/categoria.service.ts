@@ -20,7 +20,7 @@ export class CategoriaService implements ICrudServiceInterface<Categoria> {
     }
     
     delete(dados: Categoria) {
-        return this.http.delete(`${this.urlApi}?nome=${dados.nome}`);
+        return this.http.delete(`${this.urlApi}?id=${dados.id}`);
     }
 
     search(query: {}) {

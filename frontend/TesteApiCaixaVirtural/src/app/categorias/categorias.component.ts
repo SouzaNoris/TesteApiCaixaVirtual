@@ -5,6 +5,7 @@ import { CategoriaService } from './categoria.service';
 import { Categoria } from '../models/categoria';
 import { CategoriaSearchComponent } from './search/categoriaSearch.component';
 import { Router } from '@angular/router';
+import { Guid } from 'guid-typescript';
 
 @Component({
   selector: 'app-categorias',
@@ -35,10 +36,11 @@ export class CategoriasComponent extends BaseComponent implements OnInit {
     let id = this.categoriaForm.get('id').value;
 
     if (id) {
-      categoria._id = id;
+      categoria.id = id;
       categoria.nome = this.categoriaForm.get('nome').value;
     }
     else {
+      categoria.id = Guid.create().toString();
       categoria.nome = this.categoriaForm.get('nome').value;
     }
 
@@ -53,7 +55,7 @@ export class CategoriasComponent extends BaseComponent implements OnInit {
   }
 
   getDadosModalSearch(categoria: Categoria) {
-    this.categoriaForm.get('id').setValue(categoria._id);
+    this.categoriaForm.get('id').setValue(categoria.id);
     this.categoriaForm.get('nome').setValue(categoria.nome);
 
     this.stateVisible();
@@ -69,7 +71,6 @@ export class CategoriasComponent extends BaseComponent implements OnInit {
   }
 
   public saveCategoria(): void {
-    debugger;
     let id = this.categoriaForm.get('id').value;
 
     if (id) {
