@@ -1,40 +1,50 @@
+import { Router } from "@angular/router";
+
 export class BaseComponent {
-    constructor() {
+    constructor(protected router: Router) {
         this.stateInsert();
     }
 
     protected statusTela: string = "Inserindo";
 
     protected save: boolean = true;
-    protected alterar: boolean = false;
+    protected update: boolean = false;
     protected search: boolean = true;
     protected delete: boolean = false;
-    protected disabledInputs: boolean = false;
+    protected showMessage: boolean = false;
+    protected message: string = "";
 
     stateInsert() {
         this.save = true;
-        this.alterar = false;
+        this.update = false;
         this.search = true;
         this.delete = false;
         this.statusTela = "Inserindo";
-        this.disabledInputs = false;
+        this.showMessage = false;
+    }
+    
+    protected new() {
     }
 
     stateVisible() {
         this.save = false;
-        this.alterar = true;
+        this.update = true;
         this.search = true;
         this.delete = true;
         this.statusTela = "Visualizando";
-        this.disabledInputs = true;
+        this.showMessage = true;
     }
 
     stateUpdate() {
-        this.save = false;
-        this.alterar = false;
+        this.save = true;
+        this.update = false;
         this.search = true;
         this.delete = false;
         this.statusTela = "Alterando";
-        this.disabledInputs = false;
+        this.showMessage = true;
+    }
+
+    closeAndRedirect() {
+        this.router.navigateByUrl('/');
     }
 }

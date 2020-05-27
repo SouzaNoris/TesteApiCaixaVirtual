@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { HttpClient, HttpHeaders,  HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpClient,  HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ICrudServiceInterface } from "../contracts/crudService.interface";
 import { Categoria } from "../models/categoria";
 
@@ -11,19 +11,19 @@ export class CategoriaService implements ICrudServiceInterface<Categoria> {
 
     constructor(private http: HttpClient) { }
 
-    headers = new HttpHeaders().set('Content-Type', 'application/json');
-  
     insert(dados: Categoria) {
         return this.http.post<Categoria>(this.urlApi, JSON.stringify(dados));
     }
     
     update(dados: Categoria) {
-        throw new Error("Method not implemented.");
+        return this.http.put<Categoria>(this.urlApi, JSON.stringify(dados));
     }
-    delete(query: {}) {
-        throw new Error("Method not implemented.");
+    
+    delete(dados: Categoria) {
+        return this.http.delete(`${this.urlApi}?nome=${dados.nome}`);
     }
-    search(query: {}): Categoria[] {
-        throw new Error("Method not implemented.");
+
+    search(query: {}) {
+        return this.http.post<Categoria[]>(`${this.urlApi}/search`, JSON.stringify(query));
     }
 }

@@ -46,10 +46,10 @@ export const register = (app: express.Application) => {
             })
     });
 
-    app.delete("/api/v1/categoria/delete", (req, res) => {
+    app.delete("/api/v1/categoria", (req, res) => {
         const categoriaController = new CategoriaController();
 
-        categoriaController.deleteCategoria(req.body).then((r) => {
+        categoriaController.deleteCategoria(req.query).then((r) => {
             res.json(r);
         })
             .catch((error) => {
