@@ -1,5 +1,6 @@
 import { LancamentoCaixaRepository } from "../../repository/lancamentoCaixaRepository";
 import { LancamentoCaixa } from "../../models/lancamentoCaixa";
+import { ResumoCarteira } from "../../models/resumoCarteira";
 
 export class LancamentoCaixaController {
     private lancamentoCaixaRepository: LancamentoCaixaRepository;
@@ -8,7 +9,7 @@ export class LancamentoCaixaController {
         this.lancamentoCaixaRepository = new LancamentoCaixaRepository();
     }
 
-    public async insertCategoria(dados: LancamentoCaixa) {
+    public async insertLancamentoCaixa(dados: LancamentoCaixa) {
         let result;
 
         await this.lancamentoCaixaRepository.insert(dados)
@@ -19,7 +20,7 @@ export class LancamentoCaixaController {
         return result;
     }
 
-    public async updateCategoria(dados: LancamentoCaixa) {
+    public async updateLancamentoCaixa(dados: LancamentoCaixa) {
         let result;
 
         await this.lancamentoCaixaRepository.update(dados)
@@ -30,7 +31,7 @@ export class LancamentoCaixaController {
         return result;
     }
 
-    public async searchCategoria(query: {}) {
+    public async searchLancamentoCaixa(query: {}) {
         let dados;
 
         await this.lancamentoCaixaRepository.search(query)
@@ -41,14 +42,35 @@ export class LancamentoCaixaController {
         return dados;
     }
 
-    public async deleteCategoria(query: {}) {
+    public async deleteLancamentoCaixa(id: {}) {
         let result;
 
-        await this.lancamentoCaixaRepository.delete(query)
+        await this.lancamentoCaixaRepository.delete(id)
             .then((response) => {
                 result = response;
             });
 
         return result;
+    }
+
+    public async resumoMovimentacoes() {
+        const movimentacoes = new ResumoCarteira();
+
+        await this.searchLancamentoCaixa({ data: Date.now }).then((result) => {
+            movimentacoes.movimentacoes = result;
+            let entradas = 0;
+            let saidas = 0;
+
+            movimentacoes.movimentacoes.forEach((movimento) => {
+                if (movimento.tipo === 'entrada')
+                    entradas = entradas + movimento.valor;
+                else
+                    saidas = saidas + movimento.valor;
+            });
+
+            movimentacoes.saldoTotal = entradas - saidas;
+        });
+
+        return movimentacoes;
     }
 }

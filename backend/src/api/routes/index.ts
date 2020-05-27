@@ -62,7 +62,7 @@ export const register = (app: express.Application) => {
     app.post("/api/v1/lancamentoCaixa", (req: any, res) => {
         const lancamentoCaixaController = new LancamentoCaixaController();
 
-        lancamentoCaixaController.insertCategoria(req.body)
+        lancamentoCaixaController.insertLancamentoCaixa(req.body)
             .then((resposta) => {
                 res.json(resposta);
             })
@@ -75,7 +75,7 @@ export const register = (app: express.Application) => {
     app.put("/api/v1/lancamentoCaixa", (req: any, res) => {
         const lancamentoCaixaController = new LancamentoCaixaController();
 
-        lancamentoCaixaController.updateCategoria(req.body)
+        lancamentoCaixaController.updateLancamentoCaixa(req.body)
             .then((resposta) => {
                 res.json(resposta);
             })
@@ -88,7 +88,7 @@ export const register = (app: express.Application) => {
     app.post("/api/v1/lancamentoCaixa/search", (req, res) => {
         const lancamentoCaixaController = new LancamentoCaixaController();
 
-        lancamentoCaixaController.searchCategoria(req.body).then((r) => {
+        lancamentoCaixaController.searchLancamentoCaixa(req.body).then((r) => {
             res.json(r);
         })
             .catch((error) => {
@@ -97,15 +97,27 @@ export const register = (app: express.Application) => {
             })
     });
 
-    app.delete("/api/v1/lancamentoCaixa/delete", (req, res) => {
+    app.delete("/api/v1/lancamentoCaixa", (req, res) => {
         const lancamentoCaixaController = new LancamentoCaixaController();
 
-        lancamentoCaixaController.deleteCategoria(req.body).then((r) => {
+        lancamentoCaixaController.deleteLancamentoCaixa(req.query).then((r) => {
             res.json(r);
         })
             .catch((error) => {
                 res.send(404);
                 res.json(error);
             });
+    });
+
+    app.post("/api/v1/lancamentoCaixa/resumo", (req, res) => {
+        const lancamentoCaixaController = new LancamentoCaixaController();
+
+        lancamentoCaixaController.resumoMovimentacoes().then((r) => {
+            res.json(r);
+        })
+            .catch((error) => {
+                res.send(404);
+                res.json(error);
+            })
     });
 }

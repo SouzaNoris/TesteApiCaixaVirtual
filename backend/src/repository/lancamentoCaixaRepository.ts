@@ -41,12 +41,12 @@ export class LancamentoCaixaRepository extends BaseRepository implements BaseRep
             });
         });
     }
-    delete(query: any) {
+    delete(id: { }) {
         return new Promise((resolve, reject) => {
             this.getConnectionDatabase().then((db) => {
                 db.db(this.databaseName)
                     .collection(this.nameCollection)
-                    .deleteOne(query)
+                    .remove(id)
                     .then((resposta) => {
                         return resolve(resposta);
                     })
