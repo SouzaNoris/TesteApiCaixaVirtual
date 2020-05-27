@@ -31,9 +31,9 @@ export class CategoriaRepository extends BaseRepository implements BaseRepositor
             this.getConnectionDatabase().then((db) => {
                 db.db(this.databaseName)
                     .collection(this.nameCollection)
-                    .updateOne({ _id: dados._id } , { $set: dados })
+                    .updateOne({ id: dados.id } , { $set: dados })
                     .then(() => {
-                        return resolve("dados atualizados com sucesso!");
+                        return resolve("Dados atualizados com sucesso!");
                     })
                     .catch(err => {
                         return reject(this.messageError(err));
@@ -42,12 +42,12 @@ export class CategoriaRepository extends BaseRepository implements BaseRepositor
         });
     }
 
-    delete(query: {}) {
+    delete(id: { }) {
         return new Promise((resolve, reject) => {
             this.getConnectionDatabase().then((db) => {
                 db.db(this.databaseName)
                     .collection(this.nameCollection)
-                    .remove({ query })
+                    .remove(id)
                     .then((resposta) => {
                         return resolve(resposta);
                     })

@@ -1,7 +1,6 @@
-import { MongoClient, Db } from "mongodb";
+import { MongoClient } from "mongodb";
 import { ConfigJson } from "../../models/configJson";
 import fs from "fs";
-import { rejects } from "assert";
 
 export abstract class BaseRepository {
     protected abstract nameCollection: string;

@@ -41,10 +41,10 @@ export class CategoriaController {
         return dados;
     }
 
-    public async deleteCategoria(query: {}) {
+    public async deleteCategoria(id: any) {
         let result;
 
-        await this.categoriaRepository.delete(query)
+        await this.categoriaRepository.delete(id)
             .then((response) => {
                 result = response;
             });
