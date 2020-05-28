@@ -9,6 +9,7 @@ import { LancamentoCaixaModule } from './lancamentoCaixa/lancamentoCaixa.module'
 import { ResumoCarteiraModule } from './resumo-carteira/resumoCarteira.module';
 import { UsuarioModule } from './cadastro-usuario/usuario.module';
 import { LoginModule } from './login/login.module';
+import { HomeModule } from './home/home.module';
 
 declare var $: any;
 
@@ -24,7 +25,8 @@ declare var $: any;
     LancamentoCaixaModule,
     ResumoCarteiraModule,
     UsuarioModule,
-    LoginModule
+    LoginModule,
+    HomeModule
   ],
   providers: [],
   bootstrap: [AppComponent]

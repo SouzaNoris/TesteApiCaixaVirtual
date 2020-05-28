@@ -1,4 +1,4 @@
-import { Component, Output, EventEmitter } from "@angular/core";
+import { Component, Output, EventEmitter, Input } from "@angular/core";
 import { LancamentoCaixa } from "src/app/models/lancamentoCaixa";
 import { LancamentoCaixaService } from "../lancamentoCaixa.service";
 
@@ -17,6 +17,7 @@ export class LancamentoCaixaSearchComponent {
     headersArray: string[] = [ "Data", "Tipo", "Valor", "Descrição"];
     
     dadosSearch: string = "";
+    @Input() idLoja: string;
     @Output() selectDados: EventEmitter<LancamentoCaixa> = new EventEmitter<LancamentoCaixa>();
 
     constructor(private lancamentoCaixaService: LancamentoCaixaService) {
@@ -35,7 +36,8 @@ export class LancamentoCaixaSearchComponent {
 
     search() {
         let query = {
-            data: { '$regex': this.dadosSearch }
+            data: { '$regex': this.dadosSearch },
+            idLoja: this.idLoja
         }
 
         this.lancamentoCaixaService.search(query).subscribe((lancamentoCaixa) => {

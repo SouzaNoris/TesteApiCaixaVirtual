@@ -3,6 +3,7 @@ import { Router } from "@angular/router";
 export class BaseComponent {
     constructor(protected router: Router) {
         this.stateInsert();
+        this.getItemLocalStorage();
     }
 
     protected statusTela: string = "Inserindo";
@@ -13,6 +14,11 @@ export class BaseComponent {
     protected delete: boolean = false;
     protected showMessage: boolean = false;
     protected message: string = "";
+    protected idLoja: string = "";
+
+    getItemLocalStorage() {
+        this.idLoja = localStorage.getItem('idLoja');
+      }
 
     stateInsert() {
         this.save = true;
@@ -45,6 +51,6 @@ export class BaseComponent {
     }
 
     closeAndRedirect() {
-        this.router.navigateByUrl('/');
+        this.router.navigateByUrl('home');
     }
 }

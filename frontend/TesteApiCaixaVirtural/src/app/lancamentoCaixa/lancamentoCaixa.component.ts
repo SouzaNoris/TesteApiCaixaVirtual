@@ -43,7 +43,7 @@ export class LancamentoCaixaComponent extends BaseComponent implements OnInit {
     }
 
     getCategorias() {
-        this.categoriaService.search({}).subscribe((categoriasList) => {
+        this.categoriaService.search({ idLoja: this.idLoja }).subscribe((categoriasList) => {
             this.categorias = categoriasList;
         })
     }
@@ -65,7 +65,7 @@ export class LancamentoCaixaComponent extends BaseComponent implements OnInit {
         lancamentoCaixa.descricao = this.lancamentoCaixaForm.get('descricao').value;
         lancamentoCaixa.tipo = this.lancamentoCaixaForm.get('tipo').value;
         lancamentoCaixa.valor = this.lancamentoCaixaForm.get('valor').value;
-        lancamentoCaixa.idLoja = "teste";
+        lancamentoCaixa.idLoja = this.idLoja;
 
         return lancamentoCaixa;
     }

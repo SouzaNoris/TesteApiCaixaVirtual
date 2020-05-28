@@ -36,14 +36,15 @@ export class CategoriasComponent extends BaseComponent implements OnInit {
     let id = this.categoriaForm.get('id').value;
 
     if (id) {
-      categoria.id = id;
-      categoria.nome = this.categoriaForm.get('nome').value;
+      categoria.id = id;  
     }
     else {
       categoria.id = Guid.create().toString();
       this.categoriaForm.get('id').setValue(categoria.id);
-      categoria.nome = this.categoriaForm.get('nome').value;
     }
+
+    categoria.nome = this.categoriaForm.get('nome').value;
+    categoria.idLoja = this.idLoja;
 
     return categoria;
   }
@@ -78,7 +79,6 @@ export class CategoriasComponent extends BaseComponent implements OnInit {
       this.updateCategoria();
     }
     else {
-      debugger;
       const categoria = this.getInstanceCategoria();
 
       this.categoriaService.insert(categoria).subscribe((response) => {

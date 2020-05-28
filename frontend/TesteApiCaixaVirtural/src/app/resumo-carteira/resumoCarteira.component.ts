@@ -27,23 +27,17 @@ export class ResumoCarteiraComponent extends BaseComponent implements OnInit {
 
     searchResumoCarteira() {
         let query = {
-            data: { '$regex': this.dataSearch }
+            data: { '$regex': this.dataSearch },
+            idLoja: this.idLoja
         }
 
         this.lancamentoCaixaService.resumo(query).subscribe((resumo) => {
             this.resumoCarteira = resumo;
-            this.applyMascara();
         },
         (error) => {
             console.log(error);
             this.message = error;
             this.showMessage = true;
         });
-    }
-
-    applyMascara() {
-        let mascara = "000.000.000,00";
-
-        this.resumoCarteira.saldoTotal
     }
 }

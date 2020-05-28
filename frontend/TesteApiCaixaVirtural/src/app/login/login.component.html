@@ -1,15 +1,28 @@
-<form class="form-signin">
-    <img class="mb-4" src="/docs/4.5/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
-    <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
-    <label for="inputEmail" class="sr-only">Email address</label>
-    <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required="" autofocus="">
-    <label for="inputPassword" class="sr-only">Password</label>
-    <input type="password" id="inputPassword" class="form-control" placeholder="Password" required="">
-    <div class="checkbox mb-3">
-      <label>
-        <input type="checkbox" value="remember-me"> Remember me
-      </label>
-    </div>
-    <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-    <p class="mt-5 mb-3 text-muted">© 2017-2020</p>
-  </form>
+<h4 class="text-center">Login</h4>
+
+<form class="form mt-4 login" [formGroup]="loginForm">
+  <div class="alert alert-{{classError}} alert-dismissible fade show" role="alert" *ngIf="showMessage">
+    {{message}}
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="form-group">
+    <input class="form-control" placeholder="Digite seu usuário" formControlName="usuario" name="usuario" autofocus>
+    <small *ngIf="loginForm.get('usuario').errors?.required" class="text-danger d-block mt-2">
+      User Name é obrigatório!
+    </small>
+  </div>
+
+  <div class="form-group">
+    <input type="password" class="form-control" placeholder="Digite sua senha" formControlName="senha" name="senha">
+    <small *ngIf="loginForm.get('senha').errors?.required" class="text-danger d-block mt-2">
+      Senha é obrigatório!
+    </small>
+  </div>
+
+  <button class="btn btn-primary btn-block" (click)="submit()">
+    login
+  </button>
+
+</form>

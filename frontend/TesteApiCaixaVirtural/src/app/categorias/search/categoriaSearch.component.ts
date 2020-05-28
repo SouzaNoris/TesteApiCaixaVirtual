@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from "@angular/core";
+import { Component, EventEmitter, Output, Input } from "@angular/core";
 import { Categoria } from "src/app/models/categoria";
 import { CategoriaService } from "../categoria.service";
 
@@ -16,6 +16,7 @@ export class CategoriaSearchComponent {
     nomeTela: string = "categorias";
     headersArray: string[] = [ "Nome"];
     dadosSearch: string = "";
+    @Input() idLoja: string;
     @Output() selectDados: EventEmitter<Categoria> = new EventEmitter<Categoria>();
 
     constructor(private categoriaService: CategoriaService) {
@@ -34,7 +35,8 @@ export class CategoriaSearchComponent {
 
     search() {
         let query = {
-            nome: { '$regex': this.dadosSearch }
+            nome: { '$regex': this.dadosSearch },
+            idLoja: this.idLoja
         }
 
         this.categoriaService.search(query).subscribe((categorias) => {
