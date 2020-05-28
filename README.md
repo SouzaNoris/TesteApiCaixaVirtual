@@ -11,6 +11,19 @@ Backend:
 
 //Rotas
 
+// Categoria
+post, put, delete http://localhost:8080/categoria;
+post http://localhost:8080/categoria/search;
+
+//Lançamento de Caixa
+post, put, delete http://localhost:8080/lancamentoCaixa;
+post http://loalhost:8080/lancamentoCaixa/search; 
+post http://localhost:8080/lancamentoCaixa/resumo;
+
+// Cadastro de Usuario
+post, put, delete http://localhost:8080/cadastroUsuario;
+post http://localhost:8080/search;
+
 
 Frontend: 
 
