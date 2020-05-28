@@ -1,0 +1,53 @@
+<div class="form-crud col-12">
+    <button type="button" class="close" (click)="closeAndRedirect()">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<form>
+    <div class="col-12 title-form">
+        <h1>Resumo da carteira</h1>
+    </div>
+    <div class="alert alert-success alert-dismissible fade show" role="alert" *ngIf="showMessage">
+        {{message}}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+
+    <div class="form-group row">
+        <label for="searchDate" class="col-sm-1 col-form-label right">Data: </label>
+        <div class="col-sm-4">
+            <input type="date" class="form-control" name="dataSearch" [(ngModel)]="dataSearch">
+        </div>
+
+        <label for="saldoTotal" class="col-sm-2 col-form-label right">Saldo total: </label>
+        <div class="col-sm-3">
+            <input type="number" class="form-control" name="saldoTotal" [(ngModel)]="resumoCarteira.saldoTotal" disabled>
+        </div>
+
+        <div class="col-sm-2">
+            <button class="btn btn-primary" (click)="searchResumoCarteira()">Atualizar</button>
+        </div>
+    </div>
+    
+    <div class="grid-search">
+        <table class="table">
+          <thead>
+            <tr>
+              <th *ngFor="let headers of headersArray" scope="col">{{headers}}</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let lancamento of resumoCarteira.movimentacoes; let i = index">
+              <td>{{lancamento.data}}</td>
+              <td>{{lancamento.tipo}}</td>
+              <td>{{lancamento.valor}}</td>
+              <td>{{lancamento.descricao}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    <div class="col-12 btn-crud">
+        <button class="btn btn-primary btn-lg" (click)="closeAndRedirect()">Sair</button>
+    </div>
+</form>

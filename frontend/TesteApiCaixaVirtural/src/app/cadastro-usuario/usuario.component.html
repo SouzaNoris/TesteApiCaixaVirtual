@@ -1,0 +1,70 @@
+<div class="form-crud col-12">
+    <button type="button" class="close" (click)="closeAndRedirect()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <form [formGroup]="usuarioForm">
+    <div class="col-12 title-form">
+      <h1>Cadastro de Usuarios</h1>
+    </div>
+    <div class="alert alert-success alert-dismissible fade show" role="alert" *ngIf="showMessage">
+      {{message}}
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="form-group row">
+      <label for="usuario" class="col-sm-2 col-form-label right">Usuario: </label>
+      <div class="col-sm-9">
+        <input type="text" formControlName="usuario" class="form-control" id="usuario"
+          placeholder="Nome do usuario" autofocus>
+        <small *ngIf="usuarioForm.get('usuario').errors?.required" class="text-danger d-block mt-2">
+          Usuario é obrigatório!
+        </small>
+      </div>
+    </div>
+    <div class="form-group row">
+        <label for="senha" class="col-sm-2 col-form-label right">Senha: </label>
+        <div class="col-sm-9">
+          <input type="password" formControlName="password" class="form-control" id="senha"
+            placeholder="Digite a senha de no mínimo 4 digitos" autofocus>
+          <small *ngIf="usuarioForm.get('password').errors?.required" class="text-danger d-block mt-2">
+            Informe uma senha com no mínimo 4 digitos!
+          </small>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="confirmacao" class="col-sm-2 col-form-label right">Confirmação: </label>
+        <div class="col-sm-9">
+          <input type="password" formControlName="confirmacao" class="form-control" id="confirmacao"
+            placeholder="Cofirmação da senha" autofocus>
+          <small *ngIf="usuarioForm.get('confirmacao').errors?.required" class="text-danger d-block mt-2">
+            Digite sua senha novamente!
+          </small>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="loja" class="col-sm-2 col-form-label right">Loja: </label>
+        <div class="col-sm-9">
+          <input type="text" formControlName="nomeLoja" class="form-control" id="loja"
+            placeholder="Nome da loja" autofocus>
+          <small *ngIf="usuarioForm.get('nomeLoja').errors?.required" class="text-danger d-block mt-2">
+            Nome da loja é obrigatório!
+          </small>
+        </div>
+      </div>
+    <div class="col-12 btn-crud">
+      <button class="btn btn-primary btn-lg" (click)="new()" [disabled]="save">Novo</button>
+      <button class="btn btn-success btn-lg" (click)="saveUsuario()"
+        [disabled]="!save || usuarioForm.invalid">Salvar</button>
+      <button class="btn btn-secondary btn-lg" (click)="alterarUsuario()" [disabled]="!update">Alterar</button>
+      <button class="btn btn-info btn-lg" data-toggle="modal" data-target=".bd-example-modal-lg"
+        [disabled]="!search">Buscar</button>
+      <button class="btn btn-danger btn-lg" [disabled]="!delete" (click)="deleteUsuario()">Excluir</button>
+    </div>
+    <div class="status-tela col-2">
+      <label>{{statusTela}}</label>
+    </div>
+  </form>
+  
+  <app-search-usuario (selectDados)="getDadosModalSearch($event)"></app-search-usuario>

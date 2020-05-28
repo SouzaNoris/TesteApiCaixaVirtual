@@ -41,6 +41,7 @@ export class CategoriasComponent extends BaseComponent implements OnInit {
     }
     else {
       categoria.id = Guid.create().toString();
+      this.categoriaForm.get('id').setValue(categoria.id);
       categoria.nome = this.categoriaForm.get('nome').value;
     }
 
@@ -77,6 +78,7 @@ export class CategoriasComponent extends BaseComponent implements OnInit {
       this.updateCategoria();
     }
     else {
+      debugger;
       const categoria = this.getInstanceCategoria();
 
       this.categoriaService.insert(categoria).subscribe((response) => {

@@ -42,7 +42,7 @@ export class CategoriaRepository extends BaseRepository implements BaseRepositor
         });
     }
 
-    delete(id: { }) {
+    delete(id: any) {
         return new Promise((resolve, reject) => {
             this.getConnectionDatabase().then((db) => {
                 db.db(this.databaseName)

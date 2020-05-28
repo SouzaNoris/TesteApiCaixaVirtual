@@ -113,7 +113,7 @@ export const register = (app: express.Application) => {
     app.post("/api/v1/lancamentoCaixa/resumo", (req, res) => {
         const lancamentoCaixaController = new LancamentoCaixaController();
 
-        lancamentoCaixaController.resumoMovimentacoes().then((r) => {
+        lancamentoCaixaController.resumoMovimentacoes(req.body).then((r) => {
             res.json(r);
         })
             .catch((error) => {

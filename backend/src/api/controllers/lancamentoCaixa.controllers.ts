@@ -53,19 +53,19 @@ export class LancamentoCaixaController {
         return result;
     }
 
-    public async resumoMovimentacoes() {
+    public async resumoMovimentacoes(query: {}) {
         const movimentacoes = new ResumoCarteira();
 
-        await this.searchLancamentoCaixa({ data: Date.now }).then((result) => {
+        await this.searchLancamentoCaixa(query).then((result) => {
             movimentacoes.movimentacoes = result;
             let entradas = 0;
             let saidas = 0;
 
             movimentacoes.movimentacoes.forEach((movimento) => {
                 if (movimento.tipo === 'entrada')
-                    entradas = entradas + movimento.valor;
+                    entradas = parseFloat(entradas.toString()) + parseFloat(movimento.valor.toString());
                 else
-                    saidas = saidas + movimento.valor;
+                    saidas = parseFloat(saidas.toString()) + parseFloat(movimento.valor.toString());
             });
 
             movimentacoes.saldoTotal = entradas - saidas;

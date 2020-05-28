@@ -1,0 +1,44 @@
+<div class="modal fade bd-example-modal-lg" id="usuarioModalSearch" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Busca de {{nomeTela}}</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form>
+        <div class="input-group mb-3">
+          <input type="text" class="form-control" placeholder="Digite aqui para buscar seus dados" aria-label="Recipient's username"
+            aria-describedby="basic-addon2" [(ngModel)]="dadosSearch" name="dadosSearch">
+          <div class="input-group-append">
+            <button class="btn btn-outline-secondary" type="button" (click)="search()">Buscar</button>
+          </div>
+        </div>
+
+        <div class="grid-search">
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col" *ngFor="let headers of headersArray">{{headers}}</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let usuario of usuarios; let i = index">
+                <td (click)="selectRegister(i)">{{usuario.usuario}}</td>
+                <td (click)="selectRegister(i)">{{usuario.idLoja}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+      </form>
+      <footer class="footer">
+        <div class="col-12 align-right">
+          <button class="btn btn-primary" (click)="close()">Sair</button>
+        </div>
+      </footer>
+    </div>
+  </div>
+</div>
